@@ -1,3 +1,16 @@
+/* 
+    =================================================================
+    |        PRACTICA WEB(2022): EL RICON DEL OTAKU (STYLES)        |
+    =================================================================
+    Realizado por:
+        - Patricia Cobos
+        - Alejandro Escamilla
+
+    ** NOTA: Pagina optimizada para Chrome de ordenador (screen 1600x900, ~24') **
+    Color Palette:  #FA4EAB, #fd6abb, #FE83C6, rgb(50, 50, 50), #443e41, #FFF2F9
+        Other colors used: rgba(224, 39, 101, 0.938), #62fa4e, black
+
+*/
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -6,8 +19,9 @@ body {
     margin-top: 80px;
     background: #FFF2F9;
     padding: 30px;
+    padding-bottom: 0;
 }
-/*Navigation bar styling*/
+/* Navigation bar styling */
 header {
     background-color: rgb(50, 50, 50);
     position: fixed;
@@ -114,8 +128,52 @@ img.cart-img {
 img.cart-img:hover {
     background-color: #FA4EAB;
 }
+/* footer styling */
+footer {
+    width: 100%;
+    height: 10vh;
+    margin-top: 1%;
+    padding: 1rem;
+    text-align: center;
+}
+.rrss-img {
+    display: inline-block;
+    width: 3.5vw;
+    height: 3.5vw;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    background-color: #443e41;
+    border-radius: 50%;
+    transition: 0.3s ease;
+}
+#twitter {
+    background-image: url("../resources/img/twitter.png");
+    background-size: 2vw;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#twitter:hover {
+    background-color: #55acee;
+}
+#instagram {
+    background-image: url("../resources/img/instagram.png");
+    background-size: 3vw;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#instagram:hover {
+    background-color: #DD2A7B;
+}
+#mail {
+    background-image: url("../resources/img/email.png");
+    background-size: 2.2vw;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#mail:hover {
+    background-color: rgb(175, 29, 29);
+}
 /*Main styling*/
-/*main{}*/
 .container {
     position: relative;
     width: 100%;
@@ -125,7 +183,6 @@ img.cart-img:hover {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-    /*height: 100vh;*/
     background-color: #443e41;
     border: 10px solid rgb(50, 50, 50);
     border-radius: 10px;
@@ -139,12 +196,14 @@ img.cart-img:hover {
     border: 3px solid;
     border-radius: 5px;
 }
-/*Slider settings*/
+
+/* Containers */
 .news-container, .products-container, .info-container, .map-container {
     width: 80%;
     margin: auto;
     margin-bottom: 5%;
 }
+/* about-us.html */
 .flx {
     display: flex;
 }
@@ -156,7 +215,7 @@ img.cart-img:hover {
     width: 40vh;
     height: 40vh;
 }
-.author p {
+.author figcaption {
     font-size: 2vw;
     color: #FE83C6;
 }
@@ -171,14 +230,13 @@ p.us {
     margin:auto;
     width: 60vh;
     height: 40vh;
-
 }
 .map iframe {
     width: 60vh;
     height: 40vh;
     border: 0;
-    
 }
+/* index.html - Slider styling */
 .slider-container {
     max-width: 90%;
     position: relative;
@@ -187,6 +245,7 @@ p.us {
 .sliderImg {
     display: none;
 }
+/* CSS class for applying FADE animation */
 .fade {
     /*Para que no haya problemas con otros navegadores*/
     -webkit-animation-name: fade;
@@ -215,7 +274,7 @@ p.us {
     color: #FE83C6;
     opacity: 1;
 }
-
+/* FADE animation */
 @-webkit-keyframes fade {
     from{opacity: .4;}
     to{opacity: 1;}
@@ -224,7 +283,7 @@ p.us {
     from{opacity: .4;}
     to{opacity: 1;}
 }
-
+/* Slider buttons */
 .prev, .next {
     cursor: pointer;
     position: absolute;
@@ -254,7 +313,7 @@ p.us {
     background-color: rgba(68, 62, 65, 0.7);
 }
 
-/*Products settings*/
+/* Product styling - used in index.html, products.html and products.html?category= */
 .products {
     display: -ms-grid;
     display: grid;
@@ -283,7 +342,6 @@ p.us {
     width: 100%;
     height: 20vw;
     border-radius: 5px;
-    
 }
 .products .singlePr .prodText, .products .singlePr p {
     position: absolute;
@@ -331,7 +389,7 @@ p.us {
     margin-top: 0.5em;
     margin-bottom: 0;
 }
-
+/* product.html?data-id= */
 .flex-w9 {
     display: flex;
     width: 90%;
@@ -343,7 +401,6 @@ p.us {
     height: auto;
     padding: 1vw;
 }
-
 .products-container .left img {
     object-fit: cover;
     width: 100%;
@@ -364,7 +421,6 @@ p.us {
 }
 .product-text .title h1 {
     margin-bottom: 0.2em;
-    
 }
 .product-text .price {
     font-size: 2.5vw;
@@ -381,6 +437,7 @@ p.us {
     margin-top: 1vw;
     border-left: 1px solid black;
 }
+/* Description Scrollbar not visible */
 .product-text .desc::-webkit-scrollbar {
     width: 0;
 }
@@ -438,7 +495,7 @@ p.us {
 .product-text .prod-btn button:hover {
     background-color: #FA4EAB;
 }
-/*Scrollbar settings*/
+/* All scrollbars Styling */
 ::-webkit-scrollbar {
     width: 2px;
 }
@@ -451,7 +508,7 @@ p.us {
     border-radius: 1px;
 }
 
-/*Orders.html*/
+/* FORM - orders.html */
 .form {
     display: flex;
     margin: auto;
@@ -530,7 +587,6 @@ label {
     color: #FFF2F9;
 }
 
-
 /*News.html*/
 .news {
     margin-left: 10%;
@@ -541,11 +597,9 @@ label {
 .grid {
     display: -ms-grid;
     display: grid;
-    /*El VSCode dice que es un error*/
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 article {
-    /*display: inline-block;*/
     position: relative;
     width: 20vw;
     height: 20vw;
@@ -577,18 +631,16 @@ article img {
     transition: 0.6s ease-out;
 }
 .news-title:hover {
-    /*background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));*/
     color: #fd6abb;
     background-position: 200%;
 }
 
-/*newsN.html*/
+/* newsN.html */
 .news-main {
     width: 90%;
     height: auto;
     margin: auto;
     padding: 1%;
-
 }
 .title-img {
     width: 100%;
@@ -678,12 +730,11 @@ ol {
 #news4 {
     font-size: 2.5vw;
 }
-/*.の{easter-egg=true}*/
 #news5 {
     font-size: 2.3vw;
 }
 
-/*cart.html*/
+/* cart.html */
 .cart-container {
     display: flex;
     flex-direction: row;
@@ -693,7 +744,6 @@ ol {
     width: 90%;
     height: auto;
 }
-
 .cart-ul {
     list-style-type: none;
     width: 70%;

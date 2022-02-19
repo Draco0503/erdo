@@ -3,6 +3,7 @@
 ## Trabajo realizado por Patricia Cobos y Alejandro Escamilla
 
 > **Nota:** para que el carrito funcione, tiene que visitar la página "index.html" para que inicialize dicho carrito. En otro caso el carrito no existirá, debido a que se creará en LocalStorage.
+> **Nota:** página optimizada para Chrome de ordenador (screen 1600x900, 24')
 
 ## Estructura
 - ## HTML5

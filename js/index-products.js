@@ -1,3 +1,9 @@
+/**
+ * SCRIPTS for "El Rincon del Otaku" web
+ * @author Draco0503, Jaekwin
+ */
+
+// As we could not call JSON.load() because of CORS auth, we had to declare JSON on the file
 const json = {
   "mangas": [{
     "id": "1",
@@ -1033,85 +1039,50 @@ const json = {
 ]};
 var products_json = JSON.stringify(json);
 var obj = JSON.parse(products_json);
-function showAll() {
-  var product = '';
-  var i;
-  for(i = 0; i < obj.mangas.length; i++) {
-    try {
-      product += '<div class="singlePr"><a href="products.html?data-id='+ obj.mangas[i].id +'">';
-      product += '<div class="prodImg"><img src="' + obj.mangas[i].img + '" alt="img' + obj.mangas[i].id + '"></div>';
-      product += '<div class="prodText"><h3>' + obj.mangas[i].name + '</h3><br>';
-      product += '<p class="price">' + obj.mangas[i].price + ' €</p></div></a>';
-      product += '<p><button type="button" aria-label="add-cart" onclick="add2Cart('+ obj.mangas[i].id +')"></button></p></div>';
-    } catch(e) {
-      console.log("[ERROR]: cannot access to index " + i);
-    }
-  }
-  document.getElementById("#products").innerHTML = product;
-}
+
+/**
+ * Check if the "myCart" key exists on the LocalStorage, if not it is created and set to []
+ */
 function _init_() {
   if(localStorage.getItem("myCart") == null) {
     var cart = [];
     localStorage.setItem("myCart", JSON.stringify(cart));
   }
 }
-function showRndProd() {
+/**
+ * Used in "index.html"
+ * Calls _init_(), creates an array of 5 different integers from 1 to 116, and adds to the elem whose id is "#products" 
+ */
+ function showRndProd() {
   _init_();
-    var product = '';
-    const rnd = [];
-    while (rnd.length < 5) {
-        var r = Math.floor(Math.random()*116);
-        if(rnd.indexOf(r) === -1) rnd.push(r);
-    }
-    // console.log(rnd);
-    for(var i = 0; i < 5; i++) {
-        try {
-          product += '<div class="singlePr"><a href="products.html?data-id='+ obj.mangas[rnd[i]].id +'">';
-          product += '<div class="prodImg"><img src="' + obj.mangas[rnd[i]].img + '" alt="img' + obj.mangas[rnd[i]].id + '"></div>';
-          product += '<div class="prodText"><h3>' + obj.mangas[rnd[i]].name + '</h3><br>';
-          product += '<p class="price">' + obj.mangas[rnd[i]].price + ' €</p></div></a>';
-          product += '<p><button type="button" aria-label="add-cart" onclick="add2Cart('+ obj.mangas[rnd[i]].id +')"></button></p></div>';
-        } catch(e) {
-          console.log("[ERROR]: cannot access to index " + rnd[i]);
-        }
-    }
-    document.getElementById("#products").innerHTML = product;
-    // console.log(product);
-}
-function showProd(id) {
-  var product = '<div class="left"><img src="'+ obj.mangas[id-1].img +'" alt="img'+ obj.mangas[id-1].id +'"></div>';
-  document.getElementById('products').classList.add('flex-w9');
-  product += '<div class="product-text"><div class="title"><h1>'+ obj.mangas[id-1].name +'</h1></div><div class="price">'+ obj.mangas[id-1].price +'€</div>';
-  product += '<div class="genres"><ul>';
-  for(var i = 0; i < obj.mangas[id-1].category.length; i++) {
-    product += '<li><a href="products.html?category='+ obj.mangas[id-1].category[i] +'">'+ obj.mangas[id-1].category[i] +'</a></li>'
+  var product = '';
+  const rnd = [];
+  while (rnd.length < 5) {
+      var r = Math.floor(Math.random()*116);
+      if(rnd.indexOf(r) === -1) rnd.push(r);
   }
-  product += '</ul></div>';
-  product += '<div class="desc"><p>'+ obj.mangas[id-1].descr +'</p></div>';
-  product += '<div class="prod-btn"><button type="button" aria-label="add-cart" onclick="add2Cart('+obj.mangas[id-1].id+')">Añadir al carrito</button></div></div>';
-  document.getElementById('products').innerHTML = product;
-}
-
-function showCategory(category) {
-  try {
-    var list = obj.mangas.filter(elem => {
-      return elem.category.includes(category);
-    });
-    var product = '';
-    list.forEach(elem => {
-      product += '<div class="singlePr"><a href="products.html?data-id='+ elem.id +'">';
-      product += '<div class="prodImg"><img src="' + elem.img + '" alt="img' + elem.id + '"></div>';
-      product += '<div class="prodText"><h3>' + elem.name + '</h3><br>';
-      product += '<p class="price">' + elem.price + ' €</p></div></a>';
-      product += '<p><button type="button" aria-label="add-cart" onclick="add2Cart('+elem.id+')"></button></p></div>';
-    });
-    document.getElementById("#products").innerHTML = product;
-  } catch(e) {
-    alert('Something went wrong showing a category product')
+  for(var i = 0; i < 5; i++) {
+      try {
+        product += '<div class="singlePr"><a href="products.html?data-id='+ obj.mangas[rnd[i]].id +'">';
+        product += '<div class="prodImg"><img src="' + obj.mangas[rnd[i]].img + '" alt="img' + obj.mangas[rnd[i]].id + '"></div>';
+        product += '<div class="prodText"><h3>' + obj.mangas[rnd[i]].name + '</h3><br>';
+        product += '<p class="price">' + obj.mangas[rnd[i]].price + ' €</p></div></a>';
+        product += '<p><button type="button" aria-label="add-cart" onclick="add2Cart('+ obj.mangas[rnd[i]].id +')"></button></p></div>';
+      } catch(e) {
+        console.log("[ERROR]: cannot access to index " + rnd[i]);
+      }
   }
+  document.getElementById("#products").innerHTML = product;
 }
-
-function choose() {
+/**
+ * Used in "products.html"
+ * It includes a header that changes as the url and its added to the elem whose id is "products"
+ * Checks if the url contains "data-id", "category" or nothing:
+ *    - data-id=N: Calls showProd(id=N)
+ *    - category=Category: Calls showCategory(category=Category)
+ *    - nothing: Calls showAll()
+ */
+ function choose() {
   var data = 'data-id';
   var category = 'category';
   var url = window.location.href;
@@ -1129,10 +1100,70 @@ function choose() {
     showAll();
   }
 }
-
+/**
+ * Shows an ordered list of the 116 products of the JSON, and adds it to elem whose id is "#products"
+ */
+function showAll() {
+  var product = '';
+  var i;
+  for(i = 0; i < obj.mangas.length; i++) {
+    try {
+      product += '<div class="singlePr"><a href="products.html?data-id='+ obj.mangas[i].id +'">';
+      product += '<div class="prodImg"><img src="' + obj.mangas[i].img + '" alt="img' + obj.mangas[i].id + '"></div>';
+      product += '<div class="prodText"><h3>' + obj.mangas[i].name + '</h3><br>';
+      product += '<p class="price">' + obj.mangas[i].price + ' €</p></div></a>';
+      product += '<p><button type="button" aria-label="add-cart" onclick="add2Cart('+ obj.mangas[i].id +')"></button></p></div>';
+    } catch(e) {
+      console.log("[ERROR]: cannot access to index " + i);
+    }
+  }
+  document.getElementById("#products").innerHTML = product;
+}
+/**
+ * Shows the hole information of the product whose id={param:id}
+ * @param {number} id Thats the id of the product
+ */
+function showProd(id) {
+  var product = '<div class="left"><img src="'+ obj.mangas[id-1].img +'" alt="img'+ obj.mangas[id-1].id +'"></div>';
+  document.getElementById('products').classList.add('flex-w9');
+  product += '<div class="product-text"><div class="title"><h1>'+ obj.mangas[id-1].name +'</h1></div><div class="price">'+ obj.mangas[id-1].price +'€</div>';
+  product += '<div class="genres"><ul>';
+  for(var i = 0; i < obj.mangas[id-1].category.length; i++) {
+    product += '<li><a href="products.html?category='+ obj.mangas[id-1].category[i] +'">'+ obj.mangas[id-1].category[i] +'</a></li>'
+  }
+  product += '</ul></div>';
+  product += '<div class="desc"><p>'+ obj.mangas[id-1].descr +'</p></div>';
+  product += '<div class="prod-btn"><button type="button" aria-label="add-cart" onclick="add2Cart('+obj.mangas[id-1].id+')">Añadir al carrito</button></div></div>';
+  document.getElementById('products').innerHTML = product;
+}
+/**
+ * Shows list of the products whose category array includes {param:category}
+ * @param {string} category Thats the category is gonna search for
+ */
+function showCategory(category) {
+  try {
+    var list = obj.mangas.filter(elem => {
+      return elem.category.includes(category);
+    });
+    var product = '';
+    list.forEach(elem => {
+      product += '<div class="singlePr"><a href="products.html?data-id='+ elem.id +'">';
+      product += '<div class="prodImg"><img src="' + elem.img + '" alt="img' + elem.id + '"></div>';
+      product += '<div class="prodText"><h3>' + elem.name + '</h3><br>';
+      product += '<p class="price">' + elem.price + ' €</p></div></a>';
+      product += '<p><button type="button" aria-label="add-cart" onclick="add2Cart('+elem.id+')"></button></p></div>';
+    });
+    document.getElementById("#products").innerHTML = product;
+  } catch(e) {
+    alert('Something went wrong showing a category product');
+  }
+}
+/**
+ * Used on every single product
+ * Adds to "myCart" the product info {name, price, img} on the position (id-1), does not allow multiple adds because its overrides the info
+ * @param {number} id Thats the id of the product 
+ */
 function add2Cart(id) {
-  // console.log(obj.mangas[id-1]);
-  // getCart();
   var cart = JSON.parse(localStorage.getItem("myCart"));
   var name = obj.mangas[id-1].name;
   var price = obj.mangas[id-1].price;
@@ -1140,8 +1171,10 @@ function add2Cart(id) {
   cart[id-1] = {name, price, img};
   alert(name + ' añadido al carrito');
   localStorage.setItem("myCart", JSON.stringify(cart));
-  
 }
+/**
+ * Shows on console the "myCart" array
+ */
 function getCart() {
   try {
     var test = localStorage.getItem("myCart");
@@ -1150,6 +1183,10 @@ function getCart() {
     console.log("The cart doesnt exists");
   }
 }
+/**
+ * Sets to "null" the "myCart" array position (id-1), only if its not null
+ * @param {number} id 
+ */
 function removeCart(id) {
   var storage = JSON.parse(localStorage.getItem("myCart"));
   if(storage[id-1] != null) {
@@ -1158,9 +1195,10 @@ function removeCart(id) {
   localStorage.setItem("myCart", JSON.stringify(storage));
   showCart();
 }
-
+/**
+ * Displays the "myCart" info on "cart.html"
+ */
 function showCart() {
-  // getCart();
   var exists = '<li><h3>El carrito no existe</h3></li>';
   var empty = '<li><h3>Carrito vacio</h3></li>';
   var storage = JSON.parse(localStorage.getItem("myCart"));
@@ -1170,23 +1208,21 @@ function showCart() {
     var cart_elem = '';
     var cart_ticket = '<ul>';
     var total = 0;
-    // console.log(storage.length)
     for(var i = 0; i < storage.length; i++) {
       if(storage[i] != null) {
-        /* lista de elementos */
+        /* Elements list */
         cart_elem += '<li class="bar">';
         cart_elem += '<button class="removeBtn" type="button" aria-label="remove-button" onclick="removeCart('+ (i+1) +')">×</button>';
         cart_elem += '<img class="bar-item" src="'+ storage[i].img +'" alt="img"'+ (i+1) +'>';
         cart_elem += '<span class="bar-item p1rem">' + storage[i].name + '</span>';
         cart_elem += '<span class="bar-item price p1rem">' + storage[i].price + '€</span>';
         cart_elem += '</li>';
-        /* total a pagar */
+        /* Total price */
         total += storage[i].price;
-        /* lista de precios */
+        /* Price list */
         cart_ticket += '<li>+' + storage[i].price + '€</li>'
       }
     } 
-    // console.log(cart_elem);
     if (cart_elem === '') {
       document.getElementById('#cart').innerHTML = empty;
     } else {
@@ -1197,6 +1233,10 @@ function showCart() {
     document.getElementById('total').innerHTML = total;
   }
 }
+/**
+ * Used in "orders.html"
+ * Gets total price that accumulates the cart
+ */
 function getTotal() {
   var storage = JSON.parse(localStorage.getItem("myCart"));
   var total = 0;
