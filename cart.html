@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/index-products.js"></script>
+</head>
+<body onload="showCart()">
+    <header>
+        <nav-bar>
+            <div class="logo">
+                <a href="index.html"><img src="resources/img/logo.png" alt="logo.png"></a>
+            </div>
+            <ul>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="news.html">NOVEDADES</a></li>
+                <li id="dropdown"><a href="products.html">PRODUCTOS &#x25BD;</a>
+                    <ul class="dropdown-cat">
+                        <li><a href="products.html?category=Accion">Accion</a></li>
+                        <li><a href="products.html?category=Apocaliptico">Apocaliptico</a></li>
+                        <li><a href="products.html?category=Artes%20marciales">Artes Marciales</a></li>
+                        <li><a href="products.html?category=Aventura">Aventura</a></li>
+                        <li><a href="products.html?category=Genero%20Bender">Bender</a></li>
+                        <li><a href="products.html?category=Ciencia%20Ficcion">Ciencia Ficcion</a></li>
+                        <li><a href="products.html?category=Comedia">Comedia</a></li>
+                        <li><a href="products.html?category=Crimen">Crimen</a></li>
+                        <li><a href="products.html?category=Demonios">Demonios</a></li>
+                        <li><a href="products.html?category=Deporte">Deporte</a></li>
+                        <li><a href="products.html?category=Drama">Drama</a></li>
+                        <li><a href="products.html?category=Ecchi">Ecchi</a></li>
+                        <li><a href="products.html?category=Fantasia">Fantasia</a></li>
+                        <li><a href="products.html?category=Gore">Gore</a></li>
+                        <li><a href="products.html?category=Harem">Harem</a></li>
+                        <li><a href="products.html?category=Historia">Historia</a></li>
+                        <li><a href="products.html?category=Horror">Horror</a></li>
+                        <li><a href="products.html?category=Magia">Magia</a></li>
+                        <li><a href="products.html?category=Manhwa">Manhwa</a></li>
+                        <li><a href="products.html?category=Mecha">Mecha</a></li>
+                        <li><a href="products.html?category=Militar">Militar</a></li>
+                        <li><a href="products.html?category=Misterio">Misterio</a></li>
+                        <li><a href="products.html?category=Musica">Musica</a></li>
+                        <li><a href="products.html?category=Policiaco">Policiaco</a></li>
+                        <li><a href="products.html?category=Psicologico">Psicologico</a></li>
+                        <li><a href="products.html?category=Reecarnacion">Reecarnacion</a></li>
+                        <li><a href="products.html?category=Rencuentros%20de%20la%20vida">Rencuentros de la vida</a></li>
+                        <li><a href="products.html?category=Romance">Romance</a></li>
+                        <li><a href="products.html?category=Samurai">Samurai</a></li>
+                        <li><a href="products.html?category=Sobrenatural">Sobrenatural</a></li>
+                        <li><a href="products.html?category=Superpoderes">Superpoderes</a></li>
+                        <li><a href="products.html?category=Supervivencia">Supervivencia</a></li>
+                        <li><a href="products.html?category=Thriller">Thriller</a></li>
+                        <li><a href="products.html?category=Tragedia">Tragedia</a></li>
+                        <li><a href="products.html?category=Vampiros">Vampiros</a></li>
+                        <li><a href="products.html?category=Vida%20escolar">Vida escolar</a></li>
+                        <li><a href="products.html?category=Yaoi">Yaoi</a></li>
+                        <li><a href="products.html?category=Yuri">Yuri</a></li>
+                    </ul>
+                </li>
+                <li><a href="orders.html">PEDIDOS</a></li>
+                <li><a href="about-us.html">QUIENES SOMOS</a></li>
+            </ul>
+            <a class="right" href="cart.html"><img class="cart-img" src="resources/img/shopping-bag-white.png" alt="cart-img"></a>
+        </nav-bar>
+    </header>
+    <main class="container">
+        <div class="main-container">
+            <div class="title">
+                <h1>Carrito</h1>
+                <hr>
+            </div>
+            <div class="cart-container">
+                <ul id="#cart" class="cart-ul"></ul>
+                <div class="ticket">
+                    <div class="title">
+                        <h2>Ticket</h2>
+                    </div>
+                    <div id="#ticket" class="ticket-prices"></div>
+                    <div id="total"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

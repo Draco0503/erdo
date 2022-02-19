@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="resources/img/favicon.png" type="image/x-icon">
+    <title>Pedidos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/index-products.js"></script>
+</head>
+<body onload="getTotal()">
+    <header>
+        <nav-bar>
+            <div class="logo">
+                <a href="index.html"><img src="resources/img/logo.png" alt="logo.png"></a>
+            </div>
+            <ul>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="news.html">NOVEDADES</a></li>
+                <li id="dropdown"><a href="products.html">PRODUCTOS &#x25BD;</a>
+                    <ul class="dropdown-cat">
+                        <li><a href="products.html?category=Accion">Accion</a></li>
+                        <li><a href="products.html?category=Apocaliptico">Apocaliptico</a></li>
+                        <li><a href="products.html?category=Artes%20marciales">Artes Marciales</a></li>
+                        <li><a href="products.html?category=Aventura">Aventura</a></li>
+                        <li><a href="products.html?category=Genero%20Bender">Bender</a></li>
+                        <li><a href="products.html?category=Ciencia%20Ficcion">Ciencia Ficcion</a></li>
+                        <li><a href="products.html?category=Comedia">Comedia</a></li>
+                        <li><a href="products.html?category=Crimen">Crimen</a></li>
+                        <li><a href="products.html?category=Demonios">Demonios</a></li>
+                        <li><a href="products.html?category=Deporte">Deporte</a></li>
+                        <li><a href="products.html?category=Drama">Drama</a></li>
+                        <li><a href="products.html?category=Ecchi">Ecchi</a></li>
+                        <li><a href="products.html?category=Fantasia">Fantasia</a></li>
+                        <li><a href="products.html?category=Gore">Gore</a></li>
+                        <li><a href="products.html?category=Harem">Harem</a></li>
+                        <li><a href="products.html?category=Historia">Historia</a></li>
+                        <li><a href="products.html?category=Horror">Horror</a></li>
+                        <li><a href="products.html?category=Magia">Magia</a></li>
+                        <li><a href="products.html?category=Manhwa">Manhwa</a></li>
+                        <li><a href="products.html?category=Mecha">Mecha</a></li>
+                        <li><a href="products.html?category=Militar">Militar</a></li>
+                        <li><a href="products.html?category=Misterio">Misterio</a></li>
+                        <li><a href="products.html?category=Musica">Musica</a></li>
+                        <li><a href="products.html?category=Policiaco">Policiaco</a></li>
+                        <li><a href="products.html?category=Psicologico">Psicologico</a></li>
+                        <li><a href="products.html?category=Reecarnacion">Reecarnacion</a></li>
+                        <li><a href="products.html?category=Rencuentros%20de%20la%20vida">Rencuentros de la vida</a></li>
+                        <li><a href="products.html?category=Romance">Romance</a></li>
+                        <li><a href="products.html?category=Samurai">Samurai</a></li>
+                        <li><a href="products.html?category=Sobrenatural">Sobrenatural</a></li>
+                        <li><a href="products.html?category=Superpoderes">Superpoderes</a></li>
+                        <li><a href="products.html?category=Supervivencia">Supervivencia</a></li>
+                        <li><a href="products.html?category=Thriller">Thriller</a></li>
+                        <li><a href="products.html?category=Tragedia">Tragedia</a></li>
+                        <li><a href="products.html?category=Vampiros">Vampiros</a></li>
+                        <li><a href="products.html?category=Vida%20escolar">Vida escolar</a></li>
+                        <li><a href="products.html?category=Yaoi">Yaoi</a></li>
+                        <li><a href="products.html?category=Yuri">Yuri</a></li>
+                    </ul>
+                <li><a class="active" href="orders.html">PEDIDOS</a></li>
+                <li><a href="about-us.html">QUIENES SOMOS</a></li>
+            </ul>
+            <a class="right" href="cart.html"><img class="cart-img" src="resources/img/shopping-bag-white.png" alt="cart-img"></a>
+        </nav-bar>
+    </header>
+    <main class="container">
+        <div class="main-container">
+            <div class="title">
+                <h1>Pedido</h1>
+            </div>
+            <form class="form" action="php/action.php" method="post">
+                <div class="row">
+                    <label for="fname">Nombre</label>
+                    <input type="text" name="firstname" id="fname" placeholder="Nombre.." required>
+                    <label for="lname">Apellidos</label>
+                    <input type="text" name="surname" id="lname" placeholder="Apellidos.." required>
+                    <label for="tlf">Teléfono</label>
+                    <input type="text" name="tlf-number" id="tlf" placeholder="Telefono.." required>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Email.." required>
+                    <div id="#price" class="form-price"></div>
+                </div>
+                <div class="row">
+                    <label for="dir">Dirección</label>
+                    <input type="text" name="dir" id="dir" placeholder="Direccion.." required>
+                    <label for="pay_method">Método de pago</label>
+                    <div class="radio">
+                        <label class="active" id="lcash" for="cash" onclick="radio(0)">
+                            <input type="radio" name="pay_method" id="cash" value="cash" checked>Efectivo
+                        </label>
+                        <label class="" id="lcard" for="card" onclick="radio(1)">
+                            <input type="radio" name="pay_method" id="card" value="card">Tarjeta
+                        </label>
+                        <script type="text/javascript">
+                            function radio(n) {
+                                var x = document.getElementById("lcash");
+                                var y = document.getElementById("lcard");
+                                if(n == 0) {
+                                    x.classList.add("active");
+                                    y.classList.remove("active");
+                                } else if (n == 1) {
+                                    y.classList.add("active");
+                                    x.classList.remove("active");
+                                } else {
+                                    console.log("[ERROR] - orders.html on radio-button")
+                                }
+                            }
+                        </script>
+                    </div>
+                    <label for="coments">Comentarios</label>
+                    <textarea name="coments" id="coments" cols="30" rows="7" placeholder="Algo que debamos saber en especial.."></textarea>
+                    <div class="btns">
+                        <input type="submit" name="submit" value="Comprar">
+                        <input type="reset" value="Borrar">
+                    </div>
+                </div>
+                <!-- TODO complete -->
+            </form>
+        </div>
+    </main>
+</body>
+</html>
